@@ -240,8 +240,22 @@ void Adafruit_GPS::common_init(void) {
 
 void Adafruit_GPS::begin(uint16_t baud)
 {
-  if(gpsSwSerial) gpsSwSerial->begin(baud);
-  else            gpsHwSerial->begin(baud);
+  if(gpsSwSerial) gpsSwSerial->begin(9600);
+  else            gpsHwSerial->begin(9600); 
+  switch(baud) {
+    case 115200:
+      if(gpsSwSerial) {
+        sendCommand(PMTK_SET_NMEA_BAUD_115200);
+        gpsSwSerial->end();
+      } else {
+        sendCommand(PMTK_SET_NMEA_BAUD_115200); 
+        gpsHwSerial->end();
+      }
+      delay(20);
+      if(gpsSwSerial) gpsSwSerial->begin(115200);
+      else            gpsHwSerial->begin(115200);
+      break;
+  }    
 }
 
 void Adafruit_GPS::sendCommand(char *str) {

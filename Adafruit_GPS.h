@@ -25,6 +25,7 @@ All text above must be included in any redistribution
 #define PMTK_SET_NMEA_UPDATE_5HZ  "$PMTK220,200*2C"
 #define PMTK_SET_NMEA_UPDATE_10HZ "$PMTK220,100*2F"
 
+#define PMTK_SET_NMEA_BAUD_115200 "$PMTK251,115200*1F"
 
 #define PMTK_SET_BAUD_57600 "$PMTK250,1,0,57600*2C"
 #define PMTK_SET_BAUD_9600 "$PMTK250,1,0,9600*17"
